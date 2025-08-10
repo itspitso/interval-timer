@@ -10,30 +10,39 @@
     <div class="container">
         <main class="timer">
             <h1>Interval Timer</h1>
-            <h2>Work</h2>
-            <label for="hours">Hours</label>
-            <input type="number" id="hours" name="hours" min="0" value="0">
+            <section class="work">
+                <h2>Work</h2>
+                <label for="hours">Hours</label>
+                <input type="number" id="hours" name="hours" min="0" value="0">
 
-            <label for="minutes">Minutes</label>
-            <input type="number" id="minutes" name="minutes" min="0" max="59" value="0">
+                <label for="minutes">Minutes</label>
+                <input type="number" id="minutes" name="minutes" min="0" max="59" value="0">
 
-            <label for="seconds">Seconds</label>
-            <input type="number" id="seconds" name="seconds" min="0" max="59" value="0">
+                <label for="seconds">Seconds</label>
+                <input type="number" id="seconds" name="seconds" min="0" max="59" value="0">
+            </section>
+            
+            <section class="rest">
+                <h2>Rest</h2>
+                <label for="hours">Hours</label>
+                <input type="number" id="hours" name="hours" min="0" value="0">
 
-            <h2>Rest</h2>
-            <label for="hours">Hours</label>
-            <input type="number" id="hours" name="hours" min="0" value="0">
+                <label for="minutes">Minutes</label>
+                <input type="number" id="minutes" name="minutes" min="0" max="59" value="0">
 
-            <label for="minutes">Minutes</label>
-            <input type="number" id="minutes" name="minutes" min="0" max="59" value="0">
-
-            <label for="seconds">Seconds</label>
-            <input type="number" id="seconds" name="seconds" min="0" max="59" value="0">
-
-            <h2>Number of Intervals</h2>
-            <label for="intervals">Intervals</label>
-            <input type="number" id="intervals" name="intervals" min="1" value="1">
-            <button type="button">Start</button>
+                <label for="seconds">Seconds</label>
+                <input type="number" id="seconds" name="seconds" min="0" max="59" value="0">
+            </section>
+            
+            <section class="number-of-intervals">
+                <h2>Number of Intervals</h2>
+                <label for="intervals">Intervals</label>
+                <input type="number" id="intervals" name="intervals" min="1" value="1">
+            </section>
+            
+            <section class="start-btn">
+                <button type="button">Start</button>
+            </section>
         </main>
     </div>
     <script src="index.js"></script>
