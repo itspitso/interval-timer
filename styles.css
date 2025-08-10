@@ -13,3 +13,24 @@
     margin: auto;
 
 }
+
+h1 {
+    text-align: center;
+    margin: 8px;
+}
+
+.work, .rest, .number-of-intervals, .start-btn {
+    margin: 24px;
+}
+
+.start-btn {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    width: 100%;
+    padding: 12px 24px;
+    background-color: #0f0f0f;
+    color: whitesmoke;
+}
