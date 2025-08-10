@@ -1,0 +1,1 @@
+const workHours = document.querySelector(".work-hours");
