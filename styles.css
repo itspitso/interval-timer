@@ -34,3 +34,7 @@ button {
     background-color: #0f0f0f;
     color: whitesmoke;
 }
+
+.hide {
+    display: none;
+}
