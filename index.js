@@ -13,3 +13,11 @@ const startButton = document.querySelector(".start");
 startButton.addEventListener("click", () => {
     startButton.style.backgroundColor = "red";
 });
+
+function workTimer() {
+
+};
+
+function restTimer() {
+
+}; 
