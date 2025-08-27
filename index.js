@@ -10,11 +10,14 @@ const intervals = document.querySelector(".intervals");
 
 const startButton = document.querySelector(".start");
 
+const timerDisplay = document.querySelector(".timer-display");
+
 startButton.addEventListener("click", () => {
     startButton.style.backgroundColor = "red";
 });
 
 function workTimer() {
+    let countdown;
 
 };
 
