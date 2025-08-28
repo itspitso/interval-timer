@@ -23,12 +23,12 @@ h1 {
     margin: 24px;
 }
 
-.start-btn {
+.start-btn, .submit-btn {
     display: flex;
     justify-content: center;
 }
 
-button {
+.start, .submit {
     width: 100%;
     padding: 12px 24px;
     background-color: #0f0f0f;

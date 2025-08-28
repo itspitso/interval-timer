@@ -9,16 +9,17 @@ const restSeconds = document.querySelector("rest-seconds");
 
 const intervals = document.querySelector(".intervals");
 
-const startButton = document.querySelector(".start");
+const submitButton = document.querySelector(".submit");
 const timerDisplaySection = document.querySelector(".run-timer");
 const timerDisplay = document.querySelector(".timer-display");
+const startButton = document.querySelector(".start");
 
 function showTimeDisplay() {
     timerDisplaySection.classList.remove("hide");
     mainSection.classList.add("hide");
 }
 
-startButton.addEventListener("click", showTimeDisplay);
+submitButton.addEventListener("click", showTimeDisplay);
 
 function workTimer() {
     let countdown;
@@ -28,3 +29,4 @@ function workTimer() {
 function restTimer() {
 
 };
+timerDisplay.textContent = "25:00";
