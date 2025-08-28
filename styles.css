@@ -38,3 +38,13 @@ h1 {
 .hide {
     display: none;
 }
+
+.run-timer {
+    width: 50%;
+}
+
+.timer-display {
+    display: block;
+    font-size: 4rem;
+    justify-self: center;
+}

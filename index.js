@@ -12,11 +12,14 @@ const intervals = document.querySelector(".intervals");
 const submitButton = document.querySelector(".submit");
 const timerDisplaySection = document.querySelector(".run-timer");
 const timerDisplay = document.querySelector(".timer-display");
+
 const startButton = document.querySelector(".start");
 
 function showTimeDisplay() {
+    const timeToDisplay = `${workHours.value < 10 ? "0": ""}${workHours.value}:${workMinutes.value < 10 ? "0": ""}${workMinutes.value}:${workSeconds.value < 10 ? "0": ""}${workSeconds.value}`
     timerDisplaySection.classList.remove("hide");
     mainSection.classList.add("hide");
+    timerDisplay.textContent = timeToDisplay;
 }
 
 submitButton.addEventListener("click", showTimeDisplay);
@@ -29,4 +32,3 @@ function workTimer() {
 function restTimer() {
 
 };
-timerDisplay.textContent = "25:00";
