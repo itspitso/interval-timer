@@ -15,20 +15,30 @@ const timerDisplay = document.querySelector(".timer-display");
 
 const startButton = document.querySelector(".start");
 
-function showTimeDisplay() {
+function showStartTimeDisplay() {
     const timeToDisplay = `${workHours.value < 10 ? "0": ""}${workHours.value}:${workMinutes.value < 10 ? "0": ""}${workMinutes.value}:${workSeconds.value < 10 ? "0": ""}${workSeconds.value}`
     timerDisplaySection.classList.remove("hide");
     mainSection.classList.add("hide");
     timerDisplay.textContent = timeToDisplay;
 }
 
-submitButton.addEventListener("click", showTimeDisplay);
+submitButton.addEventListener("click", showStartTimeDisplay);
 
-function workTimer() {
+function timer(hours, minutes, seconds) {
     let countdown;
 
-};
-
-function restTimer() {
+    
 
 };
+
+function displayTimeLeft() {
+
+};
+
+function runTimers() {
+    const number = intervals.value;
+    for (number; number > 0; number--) {
+        timer(workHours, workMinutes, workSeconds);
+        timer(restHours, restMinutes, restSeconds);
+    }
+}
