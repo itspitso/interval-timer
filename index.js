@@ -45,10 +45,9 @@ function timer(hours, minutes, seconds) {
 
 function displayCountdown(timeLeft) {
     const toHours = timeLeft / 60 / 60 < 0 ? 0 : Math.floor(timeLeft / 60 / 60);
-    console.log(toHours);
     const toMinutes = timeLeft / 60 < 0 ? 0 : Math.floor(timeLeft / 60);
     const toSeconds = timeLeft % 60;
-    timerDisplay.textContent = `${toHours === 0 ? "00" : (toHours > 0 && toHours < 10) ? "0": ""}${toHours}:${toMinutes === 0 ? "00" : toMinutes < 10 ? "0": ""}${toMinutes}:${toSeconds < 10 ? "0": ""}${toSeconds}`;
+    timerDisplay.textContent = `${toHours === 0 ? "0": ""}${toHours}:${toMinutes < 10 ? "0": ""}${toMinutes}:${toSeconds < 10 ? "0": ""}${toSeconds}`;
 };
 /*
 function runTimers() {
