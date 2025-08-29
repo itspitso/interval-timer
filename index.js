@@ -24,12 +24,20 @@ function showStartTimeDisplay() {
 
 submitButton.addEventListener("click", showStartTimeDisplay);
 
+let countdown; 
+
 function timer(hours, minutes, seconds) {
-    let countdown;
+    const hoursToMilliseconds = hours * 60000 * 60;
+    const minutesToMilliseconds = minutes * 60000;
+    const secondsToMilliseconds = seconds * 1000; 
 
-    
+    const start = Date.now();
+    const end = now + hoursToMilliseconds + minutesToMilliseconds +  secondsToMilliseconds;
 
-};
+    setInterval(() => {
+        const timeLeftInSeconds = Math.round(then - Date.now() / 1000);
+    })
+}; 
 
 function displayTimeLeft() {
 
