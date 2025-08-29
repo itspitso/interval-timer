@@ -24,29 +24,43 @@ function showStartTimeDisplay() {
 
 submitButton.addEventListener("click", showStartTimeDisplay);
 
-let countdown; 
-
-function timer(hours, minutes, seconds) {
-    const hoursToMilliseconds = hours * 60000 * 60;
-    const minutesToMilliseconds = minutes * 60000;
+function timer(hours, minutes, seconds) { 
+    let countdown;
+    const hoursToMilliseconds = hours === 0 ? 0 : hours * 60000 * 60;
+    const minutesToMilliseconds = minutes === 0 ? 0 : minutes * 60000;
     const secondsToMilliseconds = seconds * 1000; 
 
-    const start = Date.now();
-    const end = now + hoursToMilliseconds + minutesToMilliseconds +  secondsToMilliseconds;
+    let end = hoursToMilliseconds + minutesToMilliseconds +  secondsToMilliseconds;
 
-    setInterval(() => {
-        const timeLeftInSeconds = Math.round(then - Date.now() / 1000);
-    })
+    countdown = setInterval(() => {
+        end -= 1000; 
+        const timeLeftInSeconds = Math.round(end / 1000);
+        if (timeLeftInSeconds < 0) {
+            clearInterval(countdown);
+            return;
+        }
+        displayCountdown(timeLeftInSeconds);
+    }, 1000);
 }; 
 
-function displayTimeLeft() {
-
+function displayCountdown(timeLeft) {
+    const toHours = timeLeft / 60 / 60 < 0 ? 0 : Math.floor(timeLeft / 60 / 60);
+    console.log(toHours);
+    const toMinutes = timeLeft / 60 < 0 ? 0 : Math.floor(timeLeft / 60);
+    const toSeconds = timeLeft % 60;
+    timerDisplay.textContent = `${toHours === 0 ? "00" : (toHours > 0 && toHours < 10) ? "0": ""}${toHours}:${toMinutes === 0 ? "00" : toMinutes < 10 ? "0": ""}${toMinutes}:${toSeconds < 10 ? "0": ""}${toSeconds}`;
 };
-
+/*
 function runTimers() {
     const number = intervals.value;
-    for (number; number > 0; number--) {
-        timer(workHours, workMinutes, workSeconds);
-        timer(restHours, restMinutes, restSeconds);
+    for (number; number => 0; number--) {
+        timer(workHours.value, workMinutes.value, workSeconds.value);
+        timer(restHours.value, restMinutes.value, restSeconds.value);
     }
 }
+*/
+
+startButton.addEventListener("click", () => {
+    startButton.style.backgroundColor = "grey";
+    timer(workHours.value, workMinutes.value, workSeconds.value);
+});
