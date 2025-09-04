@@ -11,6 +11,8 @@ const intervals = document.querySelector(".intervals");
 
 const submitButton = document.querySelector(".submit");
 const timerDisplaySection = document.querySelector(".run-timer");
+const workRestDisplay = document.querySelector(".work-rest-display");
+const intervalNumberDisplay = document.querySelector(".interval-number");
 const timerDisplay = document.querySelector(".timer-display");
 
 const startButton = document.querySelector(".start");
@@ -24,42 +26,42 @@ function showStartTimeDisplay() {
 
 submitButton.addEventListener("click", showStartTimeDisplay);
 
-function timer(hours, minutes, seconds) { 
-    let countdown;
-    const hoursToMilliseconds = hours === 0 ? 0 : hours * 60000 * 60;
-    const minutesToMilliseconds = minutes === 0 ? 0 : minutes * 60000;
-    const secondsToMilliseconds = seconds * 1000; 
+function timer(hours, minutes, seconds) {
+    let totalSeconds = hours * 3600 + minutes * 60 + seconds;
 
-    let end = hoursToMilliseconds + minutesToMilliseconds +  secondsToMilliseconds;
-
-    countdown = setInterval(() => {
-        end -= 1000; 
-        const timeLeftInSeconds = Math.round(end / 1000);
+    const countdown = setInterval(() => {
+        displayCountdown(timeLeftInSeconds);
+        totalSeconds -= 1000;
+        const timeLeftInSeconds = Math.round(totalSeconds / 1000);
         if (timeLeftInSeconds < 0) {
             clearInterval(countdown);
             return;
         }
-        displayCountdown(timeLeftInSeconds);
     }, 1000);
-}; 
+};
 
 function displayCountdown(timeLeft) {
-    const toHours = timeLeft / 60 / 60 < 0 ? 0 : Math.floor(timeLeft / 60 / 60);
-    const toMinutes = timeLeft / 60 < 0 ? 0 : Math.floor(timeLeft / 60);
+    const toHours = Math.floor(timeLeft / 3600);
+    const toMinutes = Math.floor(timeLeft / 60);
     const toSeconds = timeLeft % 60;
     timerDisplay.textContent = `${toHours === 0 ? "0": ""}${toHours}:${toMinutes < 10 ? "0": ""}${toMinutes}:${toSeconds < 10 ? "0": ""}${toSeconds}`;
 };
-/*
+
 function runTimers() {
-    const number = intervals.value;
-    for (number; number => 0; number--) {
+    const number = Number(intervals.value);
+
+    for (let i = 0; i < number; i++) {
+        intervalNumberDisplay.textContent = `Interval ${i+1}/${number}`;
+
+        workRestDisplay.textContent = "WORK";
         timer(workHours.value, workMinutes.value, workSeconds.value);
+
+        workRestDisplay.textContent = "REST";
         timer(restHours.value, restMinutes.value, restSeconds.value);
     }
 }
-*/
 
 startButton.addEventListener("click", () => {
-    startButton.style.backgroundColor = "grey";
-    timer(workHours.value, workMinutes.value, workSeconds.value);
+    startButton.style.display = "none";
+    runTimers();
 });
