@@ -49,6 +49,14 @@ function displayCountdown(timeLeft) {
 
 function runTimers() {
     const number = Number(intervals.value);
+    let current = 0; 
+
+    function runNextInterval() {
+        if (current >= number) {
+            intervalNumberDisplay.textContent = "All done!";
+            return;
+        }
+    }
 
     for (let i = 0; i < number; i++) {
         intervalNumberDisplay.textContent = `Interval ${i+1}/${number}`;
