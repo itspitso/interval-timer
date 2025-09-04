@@ -48,3 +48,7 @@ h1 {
     font-size: 4rem;
     justify-self: center;
 }
+
+.work-rest-display, .interval-number {
+    text-align: center;
+}

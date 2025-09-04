@@ -5,7 +5,7 @@ const workSeconds = document.querySelector(".work-seconds");
 
 const restHours = document.querySelector(".rest-hours");
 const restMinutes = document.querySelector(".rest-minutes");
-const restSeconds = document.querySelector("rest-seconds");
+const restSeconds = document.querySelector(".rest-seconds");
 
 const intervals = document.querySelector(".intervals");
 
@@ -26,17 +26,33 @@ function showStartTimeDisplay() {
 
 submitButton.addEventListener("click", showStartTimeDisplay);
 
-function timer(hours, minutes, seconds) {
+function timer(hours, minutes, seconds, callback) {
+    hours = Number(hours) || 0;
+    minutes = Number(minutes) || 0;
+    seconds = Number(seconds) || 0;
+
     let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    
+    if (isNaN(totalSeconds)) {
+        if (callback) callback();
+        return;
+    }
+
+
+    if (totalSeconds <= 0) {
+        displayCountdown(0);
+        if (callback) callback();
+        return;
+    }
 
     const countdown = setInterval(() => {
-        displayCountdown(timeLeftInSeconds);
-        totalSeconds -= 1000;
-        const timeLeftInSeconds = Math.round(totalSeconds / 1000);
-        if (timeLeftInSeconds < 0) {
+        totalSeconds --;
+        displayCountdown(totalSeconds);
+        
+       if (totalSeconds <= 0) {
             clearInterval(countdown);
-            return;
-        }
+            if (callback) callback();
+            }
     }, 1000);
 };
 
@@ -44,29 +60,51 @@ function displayCountdown(timeLeft) {
     const toHours = Math.floor(timeLeft / 3600);
     const toMinutes = Math.floor(timeLeft / 60);
     const toSeconds = timeLeft % 60;
-    timerDisplay.textContent = `${toHours === 0 ? "0": ""}${toHours}:${toMinutes < 10 ? "0": ""}${toMinutes}:${toSeconds < 10 ? "0": ""}${toSeconds}`;
+    timerDisplay.textContent = 
+        `${String(toHours).padStart(2, '0')}:` +
+        `${String(toMinutes).padStart(2, '0')}:` +
+        `${String(toSeconds).padStart(2, '0')}`;
 };
 
 function runTimers() {
     const number = Number(intervals.value);
-    let current = 0; 
+    let current = 0;
 
     function runNextInterval() {
         if (current >= number) {
+            console.log("All done");
             intervalNumberDisplay.textContent = "All done!";
             return;
         }
-    }
 
-    for (let i = 0; i < number; i++) {
-        intervalNumberDisplay.textContent = `Interval ${i+1}/${number}`;
-
+        console.log(`Running interval ${current + 1}/${number}`);
+        intervalNumberDisplay.textContent = `Interval ${current + 1}/${number}`;
         workRestDisplay.textContent = "WORK";
-        timer(workHours.value, workMinutes.value, workSeconds.value);
 
-        workRestDisplay.textContent = "REST";
-        timer(restHours.value, restMinutes.value, restSeconds.value);
+        timer(
+            parseInt(workHours.value || "0"),
+            parseInt(workMinutes.value || "0"),
+            parseInt(workSeconds.value || "0"),
+            () => {
+                console.log("Work complete");
+
+                workRestDisplay.textContent = "REST";
+
+                timer(
+                    parseInt(restHours.value || "0"),
+                    parseInt(restMinutes.value || "0"),
+                    parseInt(restSeconds.value || "0"),
+                    () => {
+                        console.log("Rest complete");
+                        current++;
+                        runNextInterval();
+                    }
+                );
+            }
+        );
     }
+
+    runNextInterval();
 }
 
 startButton.addEventListener("click", () => {
